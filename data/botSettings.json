@@ -1,0 +1,19 @@
+{
+  "currActivity": "with flowers!",
+  "extensions": {
+    "mamacog": {
+      "load": true
+    },
+    "talkercog": {
+      "load": true
+    },
+    "cutecog": {
+      "load": true
+    }
+  },
+  "guardians": [
+    466550423969595402,
+    197544495724756992,
+    279092204771868672
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "hello": {
+    "settings": {
+      "regex": [
+        "h((a?i+)|(e(n|l)lo+)) (ma)?neki"
+      ]
+    },
+    "responses": [
+      "Hey!",
+      "Hiya!",
+      "Hai!",
+      "Hi!",
+      "Henlo!"
+    ]
+  }
+}
