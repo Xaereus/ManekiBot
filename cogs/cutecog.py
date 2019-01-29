@@ -15,20 +15,19 @@ class CuteCog:
         embed = discord.Embed(title = "Command: hug", color = 0xFFC0CB)
         session = aiohttp.ClientSession()
         response = await session.get(
-            'http://api.giphy.com/v1/gifs/search?q=hug+manga&api_key=NLUaerigtVW04pj4P4slXZOexvpC5VN3&limit=10')
-        gif_choice = random.randint(0, 9)
+            'http://api.giphy.com/v1/gifs/search?q=manga+hug&api_key=NLUaerigtVW04pj4P4slXZOexvpC5VN3&limit=10')
         data = json.loads(await response.text())
-        embed.set_image(url = data['data'][gif_choice]['images']['original']['url'])
+        embed.set_image(url = data['data'][1]['images']['original']['url'])
 
         if member is None:
-            embed.description = f"{ctx.message.author.mention} has been hugged!"
+            embed.description = f"{ctx.message.author.mention} has been hugged by me!"
         else:
             if member.id == ctx.message.author.id:
-                embed.description = f"{ctx.message.author.mention} has hugged themself!"
+                embed.description = f"{ctx.message.author.mention} just got a hug from me!"
             elif member.id == self.bot.user.id:
                 embed.description = f"I got a hug from {ctx.message.author.mention}! <3"
             else:
-                embed.description = f"{member.mention} has been hugged by {ctx.message.author.mention}!"
+                embed.description = f"{member.mention} just got a hug from me!"
 
         await session.close()
 
