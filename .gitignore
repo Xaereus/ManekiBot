@@ -105,3 +105,4 @@ venv.bak/
 token.txt
 *.xml
 *.iml
+*.json
