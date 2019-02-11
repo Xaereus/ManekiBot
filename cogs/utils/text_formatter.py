@@ -1,4 +1,6 @@
 import re
+from pprint import pprint
+from itertools import islice
 
 
 class TextFormatter:
@@ -98,6 +100,41 @@ class TextFormatter:
     def silent_mention(text):
         text = text.replace("@", "@\u200B")
         return text
+
+    # TODO: pagify command.
+    def pagify(self, data: list, size: int = 10, nxt: str = 'n', prv: str = 'p'):
+        pagified = {}  # The output of the method.
+        parts = [f"`{data.index(key) + 1}) `{key}" for key in data]
+        pages = list(self.l_chunk(parts, size))  # The list of parts that will become a page.
+
+        if len(pages) == 1:
+            page = '\n'.join(parts)
+            pagified['Page 1'] = page
+        else:
+            for p in pages:
+                page = '\n'.join(parts)
+                if pages[-1] != p:
+                    page += f"`{nxt}` Next page."
+                if pages[0] != p:
+                    page += f"`{prv}` Previous page."
+                pagified[f"Page {pages.index(p) + 1}"] = page
+
+        pprint(pagified)
+        return pagified
+
+    # Create a function called "chunks" with two arguments, l and n:
+    @staticmethod
+    def l_chunk(l: list, n: int):
+        # For item i in a range that is a length of l,
+        for i in range(0, len(l), n):
+            # Create an index range for l of n items:
+            yield l[i:i+n]
+
+    @staticmethod
+    def d_chunk(d: dict, n: int):
+        it = iter(d)
+        for i in range(0, len(d), n):
+            yield {k: d[k] for k in islice(it, n)}
 
 
 txt_frmt = TextFormatter()
